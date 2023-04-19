@@ -6,10 +6,13 @@ const Login = (props) => {
   const password = useRef("")
   const submitHandler = (e) => {
     e.preventDefault()
-    if (!userName.current.value && !password.current.value) return
-    props.filledData(true)
-    userName.current.value = ""
-    password.current.value = ""
+    if (!userName.current.value && !password.current.value) {
+      props.filledData(true)
+    } else {
+      props.filledData(false)
+      userName.current.value = ""
+      password.current.value = ""
+    }
   }
   return (
     <>
