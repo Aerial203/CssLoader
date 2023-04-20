@@ -4,30 +4,27 @@ import Login from "./components/Login/Login"
 import Successful from "./components/Successful/Successful"
 
 function App() {
-  const [isEmptyField, UpdateIsEmpty] = useState(true)
+  const [isAuthenticated, setIsAuthenticated] = useState(false)
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     setTimeout(() => {
       setLoading(false)
     }, 2000)
-  }, [])
+  }, [loading])
 
   const filledData = (isEmpty) => {
-    UpdateIsEmpty(isEmpty)
+    setLoading(true)
+    setIsAuthenticated(isEmpty)
   }
-  return (
-    <div className="App">
-      {loading ? (
-        <span className="loader"></span>
-      ) : (
-        <Login filledData={filledData} />
-      )}
-      {/* <Login filledData={filledData} />
 
-      {!isEmptyField ? <Successful /> : <span className="loader"></span>} */}
-    </div>
-  )
+  if (loading) {
+    return <span className="loader"></span>
+  } else if (!isAuthenticated) {
+    return <Login filledData={filledData} />
+  } else {
+    return <>{loading ? <span className="loader"></span> : <Successful />}</>
+  }
 }
 
 export default App

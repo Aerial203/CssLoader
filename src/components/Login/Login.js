@@ -7,9 +7,9 @@ const Login = (props) => {
   const submitHandler = (e) => {
     e.preventDefault()
     if (!userName.current.value && !password.current.value) {
-      props.filledData(true)
-    } else {
       props.filledData(false)
+    } else {
+      props.filledData(true)
       userName.current.value = ""
       password.current.value = ""
     }
